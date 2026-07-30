@@ -1,0 +1,273 @@
+.techstack-new {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 80px 0;
+}
+
+/* Video Background */
+.techstack-bg-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120vw;
+  height: 120vh;
+  background: radial-gradient(circle at center, rgba(139, 92, 246, 0.12) 0%, rgba(59, 130, 246, 0.08) 40%, transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+  animation: pulseGlow 10s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+  100% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+}
+
+.techstack-video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.techstack-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dark Overlay */
+.techstack-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* Top gradient fade - blends with section above */
+.techstack-video-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(to bottom, #0b080c 0%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Bottom gradient fade - blends with section below */
+.techstack-video-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(to top, #0b080c 0%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Content */
+.techstack-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.techstack-content h2 {
+  font-size: 70px;
+  text-align: center;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+  background: linear-gradient(180deg, #ffffff 0%, #c2a4ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Pyramid Container - Perfect Inverted Triangle */
+.techstack-pyramid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Each Row using CSS Grid */
+.techstack-row {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Square Glass Card Item */
+.techstack-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 68px;
+  padding: 8px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.techstack-item:hover {
+  transform: translateY(-8px) scale(1.08);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--brand-color);
+  box-shadow: 0 8px 30px var(--brand-color-glow);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* Default Icon: Original Brand Color */
+.techstack-item img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  filter: none;
+  transition: transform 0.3s ease;
+}
+
+/* Force specific black icons (Next.js, GitHub, Vercel) to be white always */
+.techstack-item.always-white img {
+  filter: brightness(0) invert(1);
+}
+
+/* Hover Icon: Animate only */
+.techstack-item:hover img {
+  transform: scale(1.1) rotate(4deg);
+}
+
+.techstack-item span {
+  font-size: 9px;
+  font-weight: 600;
+  color: #E5E7EB;
+  margin-top: 5px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50px;
+  transition: color 0.3s ease;
+}
+
+.techstack-item:hover span {
+  color: #FFFFFF;
+}
+
+/* Responsive - Tablet shrinks slightly while maintaining exact 12->10->8->6->4->2 layout */
+@media screen and (max-width: 1200px) {
+  .techstack-content {
+    max-width: 900px;
+  }
+  
+  .techstack-item {
+    width: 50px;
+    height: 62px;
+  }
+  
+  .techstack-item img {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .techstack-item span {
+    font-size: 8px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .techstack-content h2 {
+    font-size: 50px;
+    margin-bottom: 35px;
+  }
+  
+  .techstack-pyramid {
+    gap: 8px;
+  }
+  
+  .techstack-row {
+    gap: 8px;
+  }
+  
+  .techstack-item {
+    width: 45px;
+    height: 56px;
+    padding: 6px;
+  }
+  
+  .techstack-item img {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .techstack-item span {
+    font-size: 7px;
+    max-width: 42px;
+  }
+}
+
+/* Mobile stacks normally */
+@media screen and (max-width: 600px) {
+  .techstack-content h2 {
+    font-size: 36px;
+  }
+  
+  .techstack-pyramid {
+    gap: 6px;
+  }
+  
+  .techstack-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+  
+  .techstack-item {
+    width: 42px;
+    height: 52px;
+    padding: 5px;
+    border-radius: 8px;
+  }
+  
+  .techstack-item img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .techstack-item span {
+    font-size: 6.5px;
+    max-width: 38px;
+    margin-top: 3px;
+  }
+}
